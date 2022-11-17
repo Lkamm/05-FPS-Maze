@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Maze/Maze.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://UI/Menu.gd" type="Script" id=3]
+[ext_resource path="res://Assets/muzzle_flash.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.5
@@ -16,6 +17,8 @@ radius = 0.5
 [sub_resource type="BoxShape" id=4]
 margin = 0.001
 extents = Vector3( 0.4, 0.1, 0.4 )
+
+[sub_resource type="CylinderShape" id=5]
 
 [node name="Game" type="Spatial"]
 
@@ -45,6 +48,20 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 
 [node name="Camera" type="Camera" parent="Player/Pivot"]
 current = true
+
+[node name="RayCast" type="RayCast" parent="Player/Pivot"]
+cast_to = Vector3( 0, 0, -1 )
+
+[node name="Decal" type="Sprite3D" parent="Player/Pivot"]
+texture = ExtResource( 4 )
+
+[node name="SpotLight" type="SpotLight" parent="Player/Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0 )
+
+[node name="Ball_Collection" type="Area" parent="Player"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/Ball_Collection"]
+shape = SubResource( 5 )
 
 [node name="Menu" type="Control" parent="."]
 pause_mode = 2
@@ -78,5 +95,14 @@ margin_right = 574.0
 margin_bottom = 340.0
 text = "Quit"
 
+[node name="Score" type="Label" parent="Menu"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="Menu"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[connection signal="body_entered" from="Player/Ball_Collection" to="Player" method="_on_Ball_Collection_body_entered"]
 [connection signal="pressed" from="Menu/Restart" to="Menu" method="_on_Restart_pressed"]
 [connection signal="pressed" from="Menu/Quit" to="Menu" method="_on_Quit_pressed"]

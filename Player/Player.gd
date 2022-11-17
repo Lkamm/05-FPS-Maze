@@ -5,9 +5,14 @@ onready var Camera = $Pivot/Camera
 var gravity = -30
 var max_speed = 8
 var mouse_sensitivity = 0.002
-var mouse_range = 1.2
-
+var mouse_range = 2
+onready var decal = $Pivot/Decal
 var velocity = Vector3()
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$Pivot/Camera.current = true 
+	
 
 func get_input():
 	var input_dir = Vector3()
@@ -35,3 +40,22 @@ func _physics_process(delta):
 	velocity.x = desired_velocity.x
 	velocity.z = desired_velocity.z
 	velocity = move_and_slide(velocity, Vector3.UP, true)
+	if Input.is_action_pressed("shoot"):
+		_shoot()
+	#if Input.is_action_pressed("hit")
+func _shoot():
+		if not $Pivot/Flash.visible:
+			$Pivot/Flash.show()
+			$Pivot/Flash/Timer.start()
+		if $Pivot/RayCast.is_colliding():
+			var t = $Pivot/Raycast.get_collider()
+			var p = $Pivot/Raycast.get_collision_point()
+			var n = $Pivot/Raycast.get_collision_normal()
+			decal.global_transform.origin = p
+			decal.look_at(p + n, Vector3.UP)
+func _hit():
+	pass
+func _on_Ball_Collection_body_entered(body):
+	if body.name == "Ball":
+		body.queue_free()
+		Global.update_score(100)

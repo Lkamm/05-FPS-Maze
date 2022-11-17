@@ -13,7 +13,7 @@ var cell_walls = {
 }
 
 var map = []
-
+var balls  = load("res://Ball.tscn")
 var tiles = [
 	preload("res://Maze/Tile0.tscn")	# all the tiles we created
 	,preload("res://Maze/Tile1.tscn")
@@ -81,3 +81,4 @@ func make_maze():
 			tile.translation = Vector3(x*tile_size,0,z*tile_size)
 			tile.name = "Tile_" + str(x) + "_" + str(z)
 			add_child(tile)
+			add_child(balls)
