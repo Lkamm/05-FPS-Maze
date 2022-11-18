@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://new_spatialmaterial.tres" type="Material" id=1]
 [ext_resource path="res://Maze/woodpanel.tres" type="Material" id=2]
+[ext_resource path="res://Maze/Roof.tres" type="Material" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 2, 2, 0.1 )
@@ -48,4 +49,13 @@ mesh = SubResource( 10 )
 material/0 = ExtResource( 1 )
 
 [node name="Ground_Collision" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 12 )
+
+[node name="Ground2" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10678, 0 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 3 )
+
+[node name="Ground_Collision2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14083, 0 )
 shape = SubResource( 12 )

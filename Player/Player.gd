@@ -3,7 +3,7 @@ extends KinematicBody
 onready var Camera = $Pivot/Camera
 
 var gravity = -30
-var max_speed = 8
+var max_speed = 5
 var mouse_sensitivity = 0.002
 var mouse_range = 2
 onready var decal = $Pivot/Decal
