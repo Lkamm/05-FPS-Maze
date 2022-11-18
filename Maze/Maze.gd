@@ -81,4 +81,4 @@ func make_maze():
 			tile.translation = Vector3(x*tile_size,0,z*tile_size)
 			tile.name = "Tile_" + str(x) + "_" + str(z)
 			add_child(tile)
-			add_child(balls)
+		#	add_child(balls)

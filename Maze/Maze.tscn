@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Maze/Maze.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -19,6 +19,10 @@ margin = 0.001
 extents = Vector3( 0.4, 0.1, 0.4 )
 
 [sub_resource type="CylinderShape" id=5]
+
+[sub_resource type="Environment" id=6]
+background_energy = 1.53
+fog_sun_color = Color( 1, 0.901961, 0.701961, 1 )
 
 [node name="Game" type="Spatial"]
 
@@ -102,6 +106,9 @@ margin_bottom = 14.0
 [node name="Label" type="Label" parent="Menu"]
 margin_right = 40.0
 margin_bottom = 14.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
 
 [connection signal="body_entered" from="Player/Ball_Collection" to="Player" method="_on_Ball_Collection_body_entered"]
 [connection signal="pressed" from="Menu/Restart" to="Menu" method="_on_Restart_pressed"]
