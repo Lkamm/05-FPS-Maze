@@ -11,7 +11,9 @@ var cell_walls = {
 	Vector2(0, 1): S, 
 	Vector2(-1, 0): W
 }
-
+#var exits = load("res://Exit.tscn")
+var keys = load("res://Exit.tscn")
+var t = 0
 var map = []
 var balls  = load("res://Ball.tscn")
 var tiles = [
@@ -36,7 +38,8 @@ var tiles = [
 var tile_size = 2 						# 2-meter tiles
 var width = 20  						# width of map (in tiles)
 var height = 12  						# height of map (in tiles)
-
+var ball_size = 2
+#var exit_size = 2
 func _ready():
 	randomize()
 	make_maze()
@@ -79,6 +82,16 @@ func make_maze():
 		for z in range(height):
 			var tile = tiles[map[x][z]].instance()
 			tile.translation = Vector3(x*tile_size,0,z*tile_size)
+			var ball = balls.instance()
+			var key = keys.instance()
+			ball.translation = Vector3(x*ball_size,0.5,z*ball_size)
+			
 			tile.name = "Tile_" + str(x) + "_" + str(z)
+			#exit.translation = Vector3(x,0,z)
 			add_child(tile)
-		#	add_child(balls)
+			if t % 2 >= 0:
+				add_child(ball)
+			t += 1	
+			if Global.score>100:
+				add_child(key)
+				print(key)

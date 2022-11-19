@@ -40,8 +40,8 @@ func _physics_process(delta):
 	velocity.x = desired_velocity.x
 	velocity.z = desired_velocity.z
 	velocity = move_and_slide(velocity, Vector3.UP, true)
-	if Input.is_action_pressed("shoot"):
-		_shoot()
+	#if Input.is_action_pressed("use"):
+		#_shoot()
 	#if Input.is_action_pressed("hit")
 func _shoot():
 		if not $Pivot/Flash.visible:
@@ -56,6 +56,7 @@ func _shoot():
 func _hit():
 	pass
 func _on_Ball_Collection_body_entered(body):
-	if body.name == "Ball":
+	if body.name.substr(0, 5) == "@Ball" or body.name == "Ball":
 		body.queue_free()
 		Global.update_score(100)
+		print(body)

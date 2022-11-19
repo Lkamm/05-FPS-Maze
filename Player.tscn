@@ -1,8 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Maze/Maze.gd" type="Script" id=1]
-[ext_resource path="res://Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://UI/Menu.gd" type="Script" id=3]
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.5
@@ -21,19 +19,11 @@ extents = Vector3( 0.4, 0.1, 0.4 )
 height = 1.49889
 radius = 0.547599
 
-[sub_resource type="Environment" id=6]
-background_energy = 1.53
-fog_sun_color = Color( 1, 0.901961, 0.701961, 1 )
-
-[node name="Game" type="Spatial"]
-
-[node name="Maze" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.179822, -0.5 )
-script = ExtResource( 1 )
+[node name="Spatial" type="Spatial"]
 
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954447, 0 )
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Player"]
 transform = Transform( 0.75, 0, 0, 0, -3.27835e-08, -0.75, 0, 0.75, -3.27835e-08, 0, -0.454304, 0 )
@@ -63,55 +53,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32718, 0 )
 light_energy = 1.5
 
 [node name="Ball_Collection" type="Area" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.464436, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.38276, -0.524597, -0.00518715 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Player/Ball_Collection"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087121, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.087121, 0 )
 shape = SubResource( 5 )
 
-[node name="Menu" type="Control" parent="."]
-pause_mode = 2
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="Menu"]
-margin_right = 1024.0
-margin_bottom = 600.0
-color = Color( 0, 0, 0, 0.25098 )
-
-[node name="Restart" type="Button" parent="Menu"]
-margin_left = 474.0
-margin_top = 250.0
-margin_right = 574.0
-margin_bottom = 290.0
-text = "Restart"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Quit" type="Button" parent="Menu"]
-margin_left = 474.0
-margin_top = 300.0
-margin_right = 574.0
-margin_bottom = 340.0
-text = "Quit"
-
-[node name="Score" type="Label" parent="Menu"]
-margin_right = 40.0
-margin_bottom = 14.0
-
-[node name="Label" type="Label" parent="Menu"]
-margin_right = 40.0
-margin_bottom = 14.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
-
 [connection signal="body_entered" from="Player/Ball_Collection" to="Player" method="_on_Ball_Collection_body_entered"]
-[connection signal="pressed" from="Menu/Restart" to="Menu" method="_on_Restart_pressed"]
-[connection signal="pressed" from="Menu/Quit" to="Menu" method="_on_Quit_pressed"]
