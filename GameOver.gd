@@ -1,11 +1,11 @@
-extends Area
+extends Control
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-export var color = "Red"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,14 +15,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
-#func use():
-#	if Input.is_action_pressed("use")
 
+func _on_Quit_pressed():
+	get_tree().Quit()
 
-func _on_key_body_entered(body):
-	if body.name == "Player":
-		body.keys.append(color)
-		print(body.keys)
-		queue_free()
-	pass
-	
+func _on_Play_Again_pressed():
+	var _scene = get_tree().change_scene("res://Maze/Maze.tscn")
