@@ -22,8 +22,11 @@ func _unhandled_input(event):
 func update_score(p):
 	score+=p
 	
-func update_lives():
-	lives-=1
+
+	
+func reset():
+	get_tree().paused = false
+	score = 0
 	
 
 #		var hammer = get_node_or_null("/root/Game/Hammer")

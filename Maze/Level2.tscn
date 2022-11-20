@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player_Container.gd" type="Script" id=1]
 [ext_resource path="res://UI/Menu.gd" type="Script" id=2]
 [ext_resource path="res://Maze/Maze.gd" type="Script" id=3]
-[ext_resource path="res://Assets/doorClosed.glb" type="PackedScene" id=4]
+[ext_resource path="res://doorClosed.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/X2Download.app - (Free) Horror Ambiance - Ominous Background Music (128 kbps).mp3" type="AudioStream" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 3
@@ -11,7 +12,7 @@ background_mode = 3
 [node name="Game" type="Spatial"]
 
 [node name="Maze" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.179822, -0.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0128189, 0.179822, -0.5 )
 script = ExtResource( 3 )
 
 [node name="Player_Container" type="Spatial" parent="."]
@@ -60,7 +61,12 @@ margin_bottom = 14.0
 margin_right = 40.0
 margin_bottom = 14.0
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
 [node name="doorClosed" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.0596466, 0, 1.99911, 0, 2, 0, -1.99911, 0, 0.0596466, -0.949931, 0, -0.155833 )
 
 [connection signal="pressed" from="Menu/Restart" to="Menu" method="_on_Restart_pressed"]
 [connection signal="pressed" from="Menu/Quit" to="Menu" method="_on_Quit_pressed"]

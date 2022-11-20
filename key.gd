@@ -22,7 +22,8 @@ func _ready():
 func _on_key_body_entered(body):
 	if body.name == "Player":
 		body.keys.append(color)
-		print(body.keys)
+		var _ding = $Ding
+		_ding.play()
 		queue_free()
 	pass
 	

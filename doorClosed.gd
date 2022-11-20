@@ -24,4 +24,5 @@ func _on_Unlock_body_entered(body):
 			var game = get_node_or_null("/root/Game")
 			if game != null:
 				game.add_child(doorOpen)
+				get_tree().change_scene("res://Maze/Level3.tscn")
 			queue_free()

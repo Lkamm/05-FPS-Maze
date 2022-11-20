@@ -1,4 +1,4 @@
-extends KinematicBody
+extends Area
 
 
 # Declare member variables here. Examples:
@@ -16,5 +16,7 @@ func _ready():
 #	pass
 
 
-func _on_Area_body_entered(body):
-	var CSG = CSGShape.new()
+
+func _on_Hammer_body_entered(body):
+	if body.name == "Player":
+		body.has_hammer = true

@@ -6,7 +6,7 @@ var gravity = -30
 var max_speed = 5
 var mouse_sensitivity = 0.002
 var mouse_range = 2
-
+var has_hammer = false 
 var velocity = Vector3()
 var keys = []
 func _ready():
@@ -56,6 +56,15 @@ func _shoot():
 		#	decal.global_transform.origin = p
 		#	decal.look_at(p + n, Vector3.UP)
 func _hit():
+	if Input.is_action_pressed("use"):
+		if has_hammer == true:
+			var t = $Pivot/Raycast.get_collider()
+			var p = $Pivot/Raycast.get_collision_point()
+			var CSG = CSGSphere.new()
+			CSG.radius = 4
+			CSG.operation = CSGShape.OPERATION_SUBTRACTION
+			CSG.globe_translation = p
+			
 	pass
 func _on_Ball_Collection_body_entered(body):
 	if body.name.substr(0, 5) == "@Ball" or body.name == "Ball":

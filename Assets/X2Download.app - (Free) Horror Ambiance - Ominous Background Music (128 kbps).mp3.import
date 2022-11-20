@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/X2Download.app - (Free) Horror Ambiance - Ominous Background Music (128 kbps).mp3-466d844a908dd91ac2f1a054f39b65e7.mp3str"
+
+[deps]
+
+source_file="res://Assets/X2Download.app - (Free) Horror Ambiance - Ominous Background Music (128 kbps).mp3"
+dest_files=[ "res://.import/X2Download.app - (Free) Horror Ambiance - Ominous Background Music (128 kbps).mp3-466d844a908dd91ac2f1a054f39b65e7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

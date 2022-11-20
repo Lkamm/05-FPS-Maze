@@ -4,6 +4,8 @@ func _on_Restart_pressed():				# if we restart, then unpause the game and the re
 	get_tree().paused = false
 	get_tree().change_scene("res://Maze/Maze.tscn")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Global.reset()
+	
 
 func _on_Quit_pressed():
 	get_tree().quit()
